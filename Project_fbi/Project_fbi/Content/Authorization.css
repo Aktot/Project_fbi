@@ -1,0 +1,14 @@
+﻿        body {
+            background-color: #F1F1F1;
+            padding: 20px;
+        }
+.panel-success {
+            width: 40%;
+            margin: 0 auto;
+}
+
+        .btn a {
+            color: white;
+            text-decoration: none;
+
+        }
