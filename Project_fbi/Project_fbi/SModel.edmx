@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище SteganographyModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="History">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ImageId" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
+          <Property Name="IsDecrypted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ImageCollection">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Data" Type="image" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserCollection">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Phone" Type="int" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="8" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__History__ImageId__15502E78">
+          <End Role="ImageCollection" Type="Self.ImageCollection" Multiplicity="1" />
+          <End Role="History" Type="Self.History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ImageCollection">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="History">
+              <PropertyRef Name="ImageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ImageColl__UserI__1273C1CD">
+          <End Role="UserCollection" Type="Self.UserCollection" Multiplicity="1" />
+          <End Role="ImageCollection" Type="Self.ImageCollection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserCollection">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ImageCollection">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище SteganographyModelContainer">
+          <EntitySet Name="History" EntityType="Self.History" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ImageCollection" EntityType="Self.ImageCollection" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserCollection" EntityType="Self.UserCollection" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__History__ImageId__15502E78" Association="Self.FK__History__ImageId__15502E78">
+            <End Role="ImageCollection" EntitySet="ImageCollection" />
+            <End Role="History" EntitySet="History" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ImageColl__UserI__1273C1CD" Association="Self.FK__ImageColl__UserI__1273C1CD">
+            <End Role="UserCollection" EntitySet="UserCollection" />
+            <End Role="ImageCollection" EntitySet="ImageCollection" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SteganographyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="History">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImageId" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsDecrypted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ImageCollection" Relationship="Self.FK__History__ImageId__15502E78" FromRole="History" ToRole="ImageCollection" />
+        </EntityType>
+        <EntityType Name="ImageCollection">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Data" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+          <NavigationProperty Name="History" Relationship="Self.FK__History__ImageId__15502E78" FromRole="ImageCollection" ToRole="History" />
+          <NavigationProperty Name="UserCollection" Relationship="Self.FK__ImageColl__UserI__1273C1CD" FromRole="ImageCollection" ToRole="UserCollection" />
+        </EntityType>
+        <EntityType Name="UserCollection">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Phone" Type="Int32" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="8" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ImageCollection" Relationship="Self.FK__ImageColl__UserI__1273C1CD" FromRole="UserCollection" ToRole="ImageCollection" />
+        </EntityType>
+        <Association Name="FK__History__ImageId__15502E78">
+          <End Role="ImageCollection" Type="Self.ImageCollection" Multiplicity="1" />
+          <End Role="History" Type="Self.History" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ImageCollection">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="History">
+              <PropertyRef Name="ImageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ImageColl__UserI__1273C1CD">
+          <End Role="UserCollection" Type="Self.UserCollection" Multiplicity="1" />
+          <End Role="ImageCollection" Type="Self.ImageCollection" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserCollection">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ImageCollection">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SteganographyEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="History" EntityType="Self.History" />
+          <EntitySet Name="ImageCollection" EntityType="Self.ImageCollection" />
+          <EntitySet Name="UserCollection" EntityType="Self.UserCollection" />
+          <AssociationSet Name="FK__History__ImageId__15502E78" Association="Self.FK__History__ImageId__15502E78">
+            <End Role="ImageCollection" EntitySet="ImageCollection" />
+            <End Role="History" EntitySet="History" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ImageColl__UserI__1273C1CD" Association="Self.FK__ImageColl__UserI__1273C1CD">
+            <End Role="UserCollection" EntitySet="UserCollection" />
+            <End Role="ImageCollection" EntitySet="ImageCollection" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище SteganographyModelContainer" CdmEntityContainer="SteganographyEntities">
+          <EntitySetMapping Name="History">
+            <EntityTypeMapping TypeName="SteganographyModel.History">
+              <MappingFragment StoreEntitySet="History">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ImageId" ColumnName="ImageId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="IsDecrypted" ColumnName="IsDecrypted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ImageCollection">
+            <EntityTypeMapping TypeName="SteganographyModel.ImageCollection">
+              <MappingFragment StoreEntitySet="ImageCollection">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserCollection">
+            <EntityTypeMapping TypeName="SteganographyModel.UserCollection">
+              <MappingFragment StoreEntitySet="UserCollection">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
