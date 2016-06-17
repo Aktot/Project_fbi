@@ -12,19 +12,13 @@ namespace Project_fbi.Helpers
                 Hiding,
                 Filling_With_Zeros
             };
-        public static Bitmap embedText(string text, Bitmap bmp)
+        public static Bitmap Encrypt(string text, Bitmap bmp)
         {
             State state = State.Hiding;
-
             int charIndex = 0;
-            
             int charValue = 0;
-
             long pixelElementIndex = 0;
-            
-            int zeros = 0;
-            
-            int R = 0, G = 0, B = 0;
+            int zeros = 0, R = 0, G = 0, B = 0;
             
             for (int i = 0; i < bmp.Height; i++)
             {
@@ -107,7 +101,7 @@ namespace Project_fbi.Helpers
             return bmp;
         }
 
-        public static string extractText(Bitmap bmp)
+        public static string Decrypt(Bitmap bmp)
             {
                 int colorUnitIndex = 0;
                 int charValue = 0;
