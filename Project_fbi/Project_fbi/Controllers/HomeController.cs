@@ -44,5 +44,10 @@ namespace Project_fbi.Controllers
             }
         }
 
+        public ActionResult MainView()
+        {
+            return View();
+        }
+
     }
 }
