@@ -19,7 +19,7 @@ namespace Project_fbi
         {
             this.ImageCollection = new HashSet<ImageCollection>();
         }
-    
+        //а де перевірка на коректність? вона у цьому класі має бути?
         public int ID { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
