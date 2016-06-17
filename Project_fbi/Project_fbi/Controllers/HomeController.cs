@@ -1,5 +1,4 @@
-﻿using Project_fbi.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,7 +15,7 @@ namespace Project_fbi.Controllers
                 return View();
             }
          [HttpPost]
-         public ActionResult Autorizathion(UserModel user)
+         public ActionResult Autorizathion(UserCollection user)
             {
                 if (ModelState.IsValid)
                 {
@@ -32,7 +31,7 @@ namespace Project_fbi.Controllers
              return View();
         }
         [HttpPost]
-        public ActionResult SignUp(UserModel user)
+        public ActionResult SignUp(UserCollection user)
         {
             {
                 if (ModelState.IsValid)
