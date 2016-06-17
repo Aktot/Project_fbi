@@ -118,6 +118,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Authorization.css" />
+    <Content Include="Content\bg1.png" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -176,6 +177,7 @@
     <Content Include="Views\Home\SignUp.cshtml" />
     <Content Include="Views\Home\FailedSignUp.cshtml" />
     <Content Include="Views\Home\MainView.cshtml" />
+    <Content Include="Views\Home\History.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

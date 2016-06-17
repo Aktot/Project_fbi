@@ -49,5 +49,10 @@ namespace Project_fbi.Controllers
             return View();
         }
 
+        public ActionResult History()
+        {
+            return View();
+        }
+
     }
 }
