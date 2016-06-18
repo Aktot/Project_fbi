@@ -1,0 +1,38 @@
+﻿@model Project_fbi.History
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Encrypt</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/Styles.css" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/Content/Authorization.css">
+</head>
+<body>
+    <div class="panel-success">
+        <div class="panel-heading text-center"><h4>Encryption</h4></div>
+        <br />
+        @using (Html.BeginForm("FileUpload", "Home", FormMethod.Post,
+                            new { enctype = "multipart/form-data" }))
+        {
+            @Html.ValidationSummary()
+
+            <div>
+                Image<br />
+                <br />
+                <input type="file" name="file" id="file" style="width: 100%;" /> <br />
+                <div class="form-group"> <label> Text:</label> @Html.TextBoxFor(x => x.Text, new { @class = "form-control" }) </div>
+                <br />
+                <input class="btn btn-success" type="submit" value="Upload" />
+            </div>
+        }
+    </div>
+</body>
+</html>
