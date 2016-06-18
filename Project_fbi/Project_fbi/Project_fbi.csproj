@@ -261,6 +261,7 @@
       <DependentUpon>SModel.edmx</DependentUpon>
     </Content>
     <Content Include="Views\ImageCollections\View.cshtml" />
+    <Content Include="Views\Home\Encryption.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -41,13 +41,19 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">Main</a>
+                        <a href="@Url.Action("MainView", "Home")">Main</a>
                     </li>
                     <li>
-                        <a href="~/Views/Home/History.cshtml">History</a>
+                        <a href="@Url.Action("Encryption", "Home")">Encrypt</a>
                     </li>
                     <li>
-                        <a href="~/Views/Home/Autorizathion.cshtml">Logout</a>
+                        <a href="@Url.Action("Decryption", "Home")">Decrypt</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("History", "Home")">History</a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Logout", "Home")">Logout</a>
                     </li>
                 </ul>
             </div>

@@ -145,6 +145,10 @@ namespace Project_fbi.Controllers
             return View();
         }
 
+        public ActionResult Encryption()
+        {
+            return View();
+        }
 
     }
 }
