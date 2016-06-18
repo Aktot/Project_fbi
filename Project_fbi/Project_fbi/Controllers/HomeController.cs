@@ -73,6 +73,18 @@ namespace Project_fbi.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public ActionResult Decryption()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Decryption(History h)
+        {
+          
+                return View("DownloadLink", h);
+        }
+
 
     }
 }
