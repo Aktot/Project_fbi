@@ -21,6 +21,7 @@
     <div class="panel-success">
         <div class="panel-heading text-center"><h4>Увійти на сайт</h4></div>
         <br/>
+        @ViewBag.AlreadyEx
             @using (Html.BeginForm())
                 {
                     @Html.ValidationSummary()
