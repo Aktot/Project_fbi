@@ -4,9 +4,9 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="27eb20d3adc740b78c61023aafd45e8d" Name="Diagram1" ZoomLevel="53">
+      <Diagram DiagramId="e40f466d52724394b60df119275ef9d2" Name="Diagram1">
         <EntityTypeShape EntityType="SteganographyModel.History" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SteganographyModel.ImageCollection" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SteganographyModel.ImageCollection" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="SteganographyModel.UserCollection" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <AssociationConnector Association="SteganographyModel.FK__History__ImageId__15502E78" ManuallyRouted="false" />
         <AssociationConnector Association="SteganographyModel.FK__ImageColl__UserI__1273C1CD" ManuallyRouted="false" />

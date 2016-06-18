@@ -23,6 +23,7 @@ namespace Project_fbi
         public int ID { get; set; }
         public int UserId { get; set; }
         public byte[] Data { get; set; }
+        public string ImageName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<History> History { get; set; }

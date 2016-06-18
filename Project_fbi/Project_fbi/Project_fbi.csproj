@@ -193,6 +193,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ImageCollectionsController.cs" />
     <Compile Include="Controllers\UserCollectionsController.cs" />
     <Compile Include="DAL\UserContext.cs" />
     <Compile Include="Global.asax.cs">
@@ -205,6 +206,11 @@
     <Compile Include="ImageCollection.cs">
       <DependentUpon>SModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201606180535387_InitialCreate.cs" />
+    <Compile Include="Migrations\201606180535387_InitialCreate.Designer.cs">
+      <DependentUpon>201606180535387_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -239,6 +245,14 @@
     <Content Include="Views\Home\SignUp.cshtml" />
     <Content Include="Views\Home\FailedSignUp.cshtml" />
     <Content Include="Views\Home\MainView.cshtml" />
+    <Content Include="Views\UserCollections\Create.cshtml" />
+    <Content Include="Views\UserCollections\Delete.cshtml" />
+    <Content Include="Views\UserCollections\Details.cshtml" />
+    <Content Include="Views\UserCollections\Edit.cshtml" />
+    <Content Include="Views\UserCollections\Index.cshtml" />
+    <Content Include="Views\Home\Decryption.cshtml" />
+    <Content Include="Views\ImageCollections\Create.cshtml" />
+    <Content Include="Views\ImageCollections\Index.cshtml" />
     <EntityDeploy Include="SModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SModel.Designer.cs</LastGenOutput>
@@ -246,11 +260,7 @@
     <Content Include="SModel.edmx.diagram">
       <DependentUpon>SModel.edmx</DependentUpon>
     </Content>
-    <Content Include="Views\UserCollections\Create.cshtml" />
-    <Content Include="Views\UserCollections\Delete.cshtml" />
-    <Content Include="Views\UserCollections\Details.cshtml" />
-    <Content Include="Views\UserCollections\Edit.cshtml" />
-    <Content Include="Views\UserCollections\Index.cshtml" />
+    <Content Include="Views\ImageCollections\View.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -260,10 +270,16 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201606180535387_InitialCreate.resx">
+      <DependentUpon>201606180535387_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
