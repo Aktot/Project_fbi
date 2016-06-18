@@ -21,10 +21,9 @@
     <div class="panel-success">
         <div class="panel-heading text-center"><h4>Sign Up</h4></div>
         <br />
-        @ViewBag.AlreadyEx
         @using (Html.BeginForm())
         {
-            <!--@Html.ValidationSummary()-->
+            @Html.ValidationSummary()
             <div class="form-group"> <label> FirstName:</label> @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control" }) </div>
             <div class="form-group"> <label> LastName:</label> @Html.TextBoxFor(x => x.LastName, new { @class = "form-control" }) </div>
             <div class="form-group"> <label> Phone:</label> @Html.TextBoxFor(x => x.Phone, new { @class = "form-control" }) </div>

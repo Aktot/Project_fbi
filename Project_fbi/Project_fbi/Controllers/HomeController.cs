@@ -25,9 +25,9 @@ namespace Project_fbi.Controllers
          [HttpPost]
          public ActionResult Autorizathion(UserCollection user)
             {
-                if (ModelState.IsValid)
+                if (ModelState.IsValid && (db.Users.Any(o => (o.Email == user.Email || o.Password == user.Password))))
                 {
-                    return View("MainView", user);
+                        return View("MainView", user);
                 }
                 else
                     return View("FailedAuto");
