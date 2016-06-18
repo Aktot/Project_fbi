@@ -35,7 +35,14 @@ namespace Project_fbi.Controllers
         {
              return View();
         }
-        
+        void CheckEx(UserCollection user)
+        {
+         if (db.Users.Any(o => (o.Email == user.Email)))
+                  ViewBag.AlreadyEx = "Sorry, but the account with such e-mail already exists! ";
+            else if (db.Users.Any(o => (o.Phone == user.Phone)))
+                ViewBag.AlreadyEx = "Sorry, but the account with such phone number already exists! ";
+            else ViewBag.AlreadyEx = "Sorry, but that account already exists! ";
+        }
         [HttpPost]
         public ActionResult SignUp(UserCollection user)
         {
@@ -48,7 +55,7 @@ namespace Project_fbi.Controllers
                         db.Users.Add(user);
                         db.SaveChanges();
                     }
-                    else ViewBag.AlreadyEx = "Sorry, but that account already exists! ";
+                    else CheckEx(user); 
                     return View("Autorizathion");
 
                 }
