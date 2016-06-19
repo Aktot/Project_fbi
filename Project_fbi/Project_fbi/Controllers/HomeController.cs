@@ -1,4 +1,5 @@
 ﻿using Project_fbi.DAL;
+using Project_fbi;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -6,9 +7,12 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Project_fbi.Helpers;
 
 namespace Project_fbi.Controllers
 {
@@ -94,55 +98,64 @@ namespace Project_fbi.Controllers
                 file.SaveAs(physicalPath);
 
                 //save new record in database
-               ImageCollection  newRecord = new ImageCollection();
+                //ImageCollection  newRecord = new ImageCollection();
+
+                // newRecord.ImageName = ImageName;
+                // newRecord.ID = db.ImageCollection.Count();
+                // newRecord.UserId = 1;
+                // newRecord.Data = new byte[10];
+                // for (int i = 0; i < 10; i++)
+                //     newRecord.Data[i] = (byte)(i % 2);
+                // db.ImageCollection.Add(newRecord);
+                // try
+                // {
+                //     db.SaveChanges();
+                // }
+                // catch (DbEntityValidationException ex)
+                // {
+                //     foreach (DbEntityValidationResult item in ex.EntityValidationErrors)
+                //     {
+                //         // Get entry
+
+                //         DbEntityEntry entry = item.Entry;
+                //         string entityTypeName = entry.Entity.GetType().Name;
+
+                //         // Display or log error messages
+
+                //         foreach (DbValidationError subItem in item.ValidationErrors)
+                //         {
+                //             string message = string.Format("Error '{0}' occurred in {1} at {2}",
+                //                      subItem.ErrorMessage, entityTypeName, subItem.PropertyName);
+                //             Console.WriteLine(message);
+                //         }
+                //         switch (entry.State)
+                //         {
+                //             case EntityState.Added:
+                //                 entry.State = EntityState.Detached;
+                //                 break;
+                //             case EntityState.Modified:
+                //                 entry.CurrentValues.SetValues(entry.OriginalValues);
+                //                 entry.State = EntityState.Unchanged;
+                //                 break;
+                //             case EntityState.Deleted:
+                //                 entry.State = EntityState.Unchanged;
+                //                 break;
+                //         }
+                //  }
+                // }
+
                 
-                newRecord.ImageName = ImageName;
-                newRecord.ID = db.ImageCollection.Count();
-                newRecord.UserId = 1;
-                newRecord.Data = new byte[10];
-                for (int i = 0; i < 10; i++)
-                    newRecord.Data[i] = (byte)(i % 2);
-                db.ImageCollection.Add(newRecord);
-                try
+                byte[] imgdata = System.IO.File.ReadAllBytes(physicalPath);
+                Bitmap bmp;
+                using (var ms = new MemoryStream(imgdata))
                 {
-                    db.SaveChanges();
+                    bmp = new Bitmap(ms);
                 }
-                catch (DbEntityValidationException ex)
-                {
-                    foreach (DbEntityValidationResult item in ex.EntityValidationErrors)
-                    {
-                        // Get entry
-
-                        DbEntityEntry entry = item.Entry;
-                        string entityTypeName = entry.Entity.GetType().Name;
-
-                        // Display or log error messages
-
-                        foreach (DbValidationError subItem in item.ValidationErrors)
-                        {
-                            string message = string.Format("Error '{0}' occurred in {1} at {2}",
-                                     subItem.ErrorMessage, entityTypeName, subItem.PropertyName);
-                            Console.WriteLine(message);
-                        }
-                        switch (entry.State)
-                        {
-                            case EntityState.Added:
-                                entry.State = EntityState.Detached;
-                                break;
-                            case EntityState.Modified:
-                                entry.CurrentValues.SetValues(entry.OriginalValues);
-                                entry.State = EntityState.Unchanged;
-                                break;
-                            case EntityState.Deleted:
-                                entry.State = EntityState.Unchanged;
-                                break;
-                        }
-                    }
-                }
-
-            }
+                Encryptor  dc = new Encryptor();
+              ViewBag.Result= dc.Decrypt(bmp);
+                 }
             //return View("DownloadLink", h);
-            return View();
+            return View("Decryption");
         }
 
         public ActionResult Encryption()
