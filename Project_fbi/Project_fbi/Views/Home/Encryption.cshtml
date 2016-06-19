@@ -57,7 +57,7 @@
             <!-- /.container -->
         </nav>
         <br />
-        @using (Html.BeginForm("FileUpload", "Home", FormMethod.Post,
+        @using (Html.BeginForm("FileUploadForDecrypt", "Home", FormMethod.Post,
                                 new { enctype = "multipart/form-data" }))
         {
             @Html.ValidationSummary()

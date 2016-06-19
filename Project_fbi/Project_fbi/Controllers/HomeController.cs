@@ -13,6 +13,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Project_fbi.Helpers;
+using Project_fbi.Models;
+using System.Drawing.Imaging;
 
 namespace Project_fbi.Controllers
 {
@@ -85,6 +87,34 @@ namespace Project_fbi.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult FileUploadForDecrypt (Images img, HttpPostedFileBase file)
+        {
+            if (file != null)
+            {                
+                string ImageName = System.IO.Path.GetFileName(file.FileName);
+                string physicalPath = Server.MapPath("~/images/" + ImageName);
+
+                // save image in folder
+                file.SaveAs(physicalPath);
+
+                byte[] imgdata = System.IO.File.ReadAllBytes(physicalPath);
+                Bitmap bmp;
+                using (var ms = new MemoryStream(imgdata))
+                {
+                    bmp = new Bitmap(ms);
+                }
+                Encryptor dc = new Encryptor();
+                Bitmap bmp2 = dc.Encrypt(img.Text,bmp);
+                //System.IO.Path.GetFileNameWithoutExtension(file.FileName)+"1", ImageFormat.Bmp
+                bmp2.Save(physicalPath);
+                //file.SaveAs(physicalPath + 1);
+            }
+            //return View("DownloadLink", h);
+            return View("Decryption");
+        }
+
+
         [HttpPost]
         public ActionResult FileUpload(HttpPostedFileBase file)
         {
