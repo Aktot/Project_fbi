@@ -1,36 +1,75 @@
-﻿@model Project_fbi.History
+﻿@model Project_fbi.Models.Images
 
 @{
-    Layout = null;
+    ViewBag.Title = "Encryption";
 }
 
-<!DOCTYPE html>
+<h2>Encryption</h2>
 
+<!DOCTYPE html>
 <html>
+
 <head>
+
     <meta name="viewport" content="width=device-width" />
-    <title>Encrypt</title>
-    <link rel="stylesheet" type="text/css" href="~/Content/Styles.css" />
+    <title>Sign up</title>
+    <link rel="stylesheet" type="text/css" href="~/Content/Main.css" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="~/Content/Authorization.css">
+
 </head>
+
 <body>
     <div class="panel-success">
-        <div class="panel-heading text-center"><h4>Encryption</h4></div>
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <p class="navbar-brand">Stenography project</p>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a href="@Url.Action("MainView", "Home")">Main</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Encryption", "Home")">Encrypt</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Decryption", "Home")">Decrypt</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("History", "Home")">History</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Logout", "Home")">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav>
         <br />
         @using (Html.BeginForm("FileUpload", "Home", FormMethod.Post,
-                            new { enctype = "multipart/form-data" }))
+                                new { enctype = "multipart/form-data" }))
         {
             @Html.ValidationSummary()
 
             <div>
                 Image<br />
-                <br />
                 <input type="file" name="file" id="file" style="width: 100%;" /> <br />
                 <div class="form-group"> <label> Text:</label> @Html.TextBoxFor(x => x.Text, new { @class = "form-control" }) </div>
                 <br />
+                <br /> 
                 <input class="btn btn-success" type="submit" value="Upload" />
+
             </div>
         }
     </div>
