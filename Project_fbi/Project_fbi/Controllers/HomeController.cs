@@ -52,7 +52,7 @@ namespace Project_fbi.Controllers
             {
                 if (ModelState.IsValid)
                 {
-
+                    
                     if (!(db.Users.Any(o => (o.LastName == user.LastName || o.Email == user.Email || o.Phone == user.Phone))))
                     {
                         db.Users.Add(user);
