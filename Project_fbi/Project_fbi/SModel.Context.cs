@@ -13,10 +13,10 @@ namespace Project_fbi
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SteganographyEntities2 : DbContext
+    public partial class SteganographyEntities : DbContext
     {
-        public SteganographyEntities2()
-            : base("name=SteganographyEntities2")
+        public SteganographyEntities()
+            : base("name=SteganographyEntities")
         {
         }
     

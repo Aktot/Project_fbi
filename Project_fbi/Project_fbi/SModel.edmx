@@ -133,7 +133,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SteganographyEntities2" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="SteganographyEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="History" EntityType="Self.History" />
           <EntitySet Name="ImageCollection" EntityType="Self.ImageCollection" />
           <EntitySet Name="UserCollection" EntityType="Self.UserCollection" />
@@ -151,7 +151,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="Хранилище SteganographyModelContainer" CdmEntityContainer="SteganographyEntities2">
+        <EntityContainerMapping StorageEntityContainer="Хранилище SteganographyModelContainer" CdmEntityContainer="SteganographyEntities">
           <EntitySetMapping Name="History">
             <EntityTypeMapping TypeName="SteganographyModel.History">
               <MappingFragment StoreEntitySet="History">

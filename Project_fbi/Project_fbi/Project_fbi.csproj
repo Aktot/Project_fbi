@@ -144,9 +144,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Steganography.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <Content Include="App_Data\Steganography.mdf" />
+    <Content Include="App_Data\Steganography_log.ldf" />
     <Content Include="Content\Authorization.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -191,7 +190,9 @@
       <DependentUpon>SModel.edmx</DependentUpon>
       <LastGenOutput>SModel.cs</LastGenOutput>
     </Content>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -256,6 +257,7 @@
     <Content Include="Views\Home\Decryption.cshtml" />
     <Content Include="Views\ImageCollections\Create.cshtml" />
     <Content Include="Views\ImageCollections\Index.cshtml" />
+    <Content Include="Views\ImageCollections\View.cshtml" />
     <EntityDeploy Include="SModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SModel.Designer.cs</LastGenOutput>
@@ -263,7 +265,6 @@
     <Content Include="SModel.edmx.diagram">
       <DependentUpon>SModel.edmx</DependentUpon>
     </Content>
-    <Content Include="Views\ImageCollections\View.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

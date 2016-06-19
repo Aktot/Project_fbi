@@ -86,7 +86,7 @@ namespace Project_fbi.Controllers
         {
             if (file != null)
             {
-                SteganographyEntities2 db = new SteganographyEntities2();
+                SteganographyEntities db = new SteganographyEntities();
                 string ImageName = System.IO.Path.GetFileName(file.FileName);
                 string physicalPath = Server.MapPath("~/images/" + ImageName);
 
