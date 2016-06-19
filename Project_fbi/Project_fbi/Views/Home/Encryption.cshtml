@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Project_fbi.Models.Images
+
+@{
     ViewBag.Title = "Encryption";
 }
 
@@ -54,6 +56,22 @@
             </div>
             <!-- /.container -->
         </nav>
+        <br />
+        @using (Html.BeginForm("FileUpload", "Home", FormMethod.Post,
+                                new { enctype = "multipart/form-data" }))
+        {
+            @Html.ValidationSummary()
+
+            <div>
+                Image<br />
+                <input type="file" name="file" id="file" style="width: 100%;" /> <br />
+                <div class="form-group"> <label> Text:</label> @Html.TextBoxFor(x => x.Text, new { @class = "form-control" }) </div>
+                <br />
+                <br /> 
+                <input class="btn btn-success" type="submit" value="Upload" />
+
+            </div>
+        }
     </div>
 </body>
 </html>
